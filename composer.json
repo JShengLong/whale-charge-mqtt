@@ -1,5 +1,5 @@
 {
-  "name": "whaleIOT/charge-worker",
+  "name": "whale-iot/charge-worker",
   "description": "玖鲸物联充电桩MQTT",
   "type": "think-extend",
   "require": {
