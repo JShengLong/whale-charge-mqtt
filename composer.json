@@ -1,0 +1,28 @@
+{
+  "name": "whale/charge-worker",
+  "description": "玖鲸物联充电桩MQTT",
+  "type": "think-extend",
+  "require": {
+    "php": ">=7.0.0",
+    "workerman/workerman": ">=4.0",
+    "workerman/mqtt": ">=1.1"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "ChargeWorker\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "JShengLong",
+      "email": "57660690+JShengLong@users.noreply.github.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "extra": {
+    "think-config": {
+      "swoole": "src/config/charge.php"
+    }
+  }
+}
