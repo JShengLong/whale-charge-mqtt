@@ -7,7 +7,7 @@
     "workerman/workerman": ">=4.0",
     "workerman/mqtt": ">=1.1"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
   "autoload": {
     "psr-4": {
       "ChargeWorker\\": "src/"
