@@ -22,7 +22,7 @@
   "minimum-stability": "stable",
   "extra": {
     "think-config": {
-      "swoole": "src/config/charge.php"
+      "charge": "src/config/charge.php"
     }
   }
 }
