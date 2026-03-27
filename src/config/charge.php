@@ -4,9 +4,10 @@
 // +----------------------------------------------------------------------
 
 return [
-    'ip'        => '127.0.0.1',
-    'port'      => '1883',
-    'username'  => 'admin',
-    'client_id' => 'client_id',
-    'debug'     => false,
+    'ip'           => '127.0.0.1,
+    'port'         => '1883',
+    'username'     => 'admin',
+    'password'     => '',
+    'rx_client_id' => 'client_id',
+    'debug'        => false,
 ];
