@@ -88,7 +88,7 @@ class chargeWorker extends Worker
             };
 
             $this->mqtt->onError = function ($connection, $code, $message) {
-                logger()->error("MQTT错误 [{$code}]: {$message}");
+                $this->log("MQTT错误 [{$code}]: {$message}");
             };
 
             $this->mqtt->onClose = function () {
@@ -98,7 +98,7 @@ class chargeWorker extends Worker
             $this->mqtt->connect();
 
         } catch (Exception $e) {
-            logger()->error('MQTT连接异常: ' . $e->getMessage());
+            $this->log('MQTT连接异常: ' . $e->getMessage());
             $this->reconnect();
         }
     }
@@ -111,7 +111,7 @@ class chargeWorker extends Worker
         if ($this->reconnectTimer) {
             return;
         }
-        logger()->warning("MQTT断开连接，{$this->reconnectInterval}秒后重连...");
+        $this->log("MQTT断开连接，{$this->reconnectInterval}秒后重连...");
         $this->reconnectTimer = Timer::add($this->reconnectInterval, function () {
             $this->reconnectTimer = 0;
             $this->connectMqtt();
@@ -128,7 +128,7 @@ class chargeWorker extends Worker
         // 从topic提取IMEI: /v1/device/{imei}/rx
         $imei = $this->extractImei($topic);
         if ($imei === null) {
-            logger()->warning("无法从topic提取IMEI: {$topic}");
+            $this->log("无法从topic提取IMEI: {$topic}");
             return;
         }
 
@@ -170,7 +170,7 @@ class chargeWorker extends Worker
                 break;
 
             default:
-                logger()->info("收到未处理的命令: 0x" . strtoupper(dechex($cmd ?? 0)));
+                $this->log("收到未处理的命令: 0x" . strtoupper(dechex($cmd ?? 0)));
                 break;
         }
 
@@ -191,5 +191,15 @@ class chargeWorker extends Worker
             return $matches[1];
         }
         return null;
+    }
+
+    /**
+     * 日志输出
+     * @param string $message
+     */
+    protected function log($message)
+    {
+        $time = date('Y-m-d H:i:s');
+        echo "[{$time}] {$message}\n";
     }
 }
